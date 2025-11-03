@@ -1,0 +1,82 @@
+:root {
+  --primary-color: #7c6ae3;
+  --secondary-color: #f5f5fa;
+  --accent-color: #c3b1e1;
+  --text-color: #333;
+}
+
+body {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+}
+
+button {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+button:hover {
+  background-color: var(--accent-color);
+}
+
+.playlist-card {
+  width: 160px;
+  height: 160px;
+  border-radius: 12px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.playlist-icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.player-bar-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #222;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+}
+
+.track-info {
+  display: flex;
+  align-items: center;
+}
+
+.artist-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+.track-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.player-controls button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  margin: 0 8px;
+  cursor: pointer;
+}
+
+.volume-control input {
+  vertical-align: middle;
+}

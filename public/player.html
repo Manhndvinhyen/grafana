@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChatMusic - Nghe Nhạc</title>
+  <link rel="stylesheet" href="/styles/base.css" />
+  <link rel="stylesheet" href="/styles/layout.css" />
+  <link rel="stylesheet" href="/styles/player.css" />
+  <link rel="stylesheet" href="/styles/theme.css" />
+</head>
+<body class="dark-theme">
+  <div class="app-wrapper">
+    <aside class="sidebar-left"></aside>  <!-- Load from components/sidebar.html -->
+    <main class="main-content">
+      <header class="main-header">
+        <div class="profile-wrapper">
+          <img id="userAvatar" src="/assets/default-avatar.jpg" alt="User" class="avatar" />
+          <span id="userName">User Name</span>
+          <div id="profileDropdown" class="dropdown" style="display: none;">
+            <form id="editProfileForm">
+              <input type="text" id="editUsername" placeholder="Tên mới" />
+              <input type="file" id="editAvatar" accept="image/*" />
+              <button type="button" onclick="updateProfile()">Cập Nhật</button>
+            </form>
+          </div>
+        </div>
+        <div class="header-actions">
+          <input type="file" id="uploadInput" accept="audio/*" style="display: none;" />  <!-- Hidden file input -->
+          <button onclick="document.getElementById('uploadInput').click()">Đăng Tải Nhạc</button>  <!-- Trigger input -->
+        </div>
+
+      </header>
+      <section class="playlist-section">
+        <h2>Danh Sách Phát Gần Đây</h2>
+        <div id="playlistGrid" class="playlist-grid"></div>  <!-- Cards load from JS -->
+      </section>
+      <section id="search-section" class="main-section" style="display: none;">
+          <input type="text" placeholder="Tìm kiếm bài hát" oninput="searchTracks(this.value)" />
+          <ul id="searchList"></ul>
+        </section>
+        <section id="uploads-section" class="main-section" style="display: block;">  <!-- Default show -->
+          <h2>Danh sách tải lên</h2>
+          <ul id="tracksList"></ul>
+        </section>
+        <section id="recommend-section" class="main-section" style="display: none;">
+          <h2>Gợi ý</h2>
+          <ul id="recommendList"></ul>
+        </section>
+        <section id="upload-section" class="main-section" style="display: none;">
+          <h2>Tải nhạc lên</h2>
+          <input type="text" id="trackTitle" placeholder="Title (auto nếu có)" />
+          <input type="text" id="trackArtist" placeholder="Artist (auto nếu có)" />
+          <input type="file" id="trackFile" accept="audio/*" />
+          <input type="text" id="coverUrl" placeholder="Cover URL (optional)" />
+          <button onclick="uploadTrack()">Upload</button>
+        </section>
+    </main>
+  </div>
+  <footer class="player-bar"></footer>  <!-- Load from components/player-bar.html -->
+  <script type="module">
+    import { uploadMusic } from '/scripts/upload.js';
+    document.getElementById('uploadInput').addEventListener('change', (e) => {
+      uploadMusic(e.target.files[0]);
+    });
+  </script>
+  <script type="module" src="/scripts/app.js"></script>
+</body>
+</html>

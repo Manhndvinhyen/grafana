@@ -1,0 +1,322 @@
+ /* Reset cơ bản để loại bỏ margin/padding default */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Variables cho theme dark (dễ chỉnh toàn bộ màu) */
+:root {
+  --bg-main: #121212;  /* Nền chính đen */
+  --bg-sidebar: #040404;  /* Sidebar tối hơn */
+  --bg-player: #181818;  /* Player bar */
+  --text-primary: #ffffff;  /* Text trắng */
+  --text-secondary: #b3b3b3;  /* Text xám */
+  --accent: #1DB954;  /* Xanh Spotify cho button/active */
+  --border: #282828;  /* Border xám tối */
+}
+
+/* Body và dark theme */
+body.dark-theme {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  height: 100vh;
+  overflow: hidden;  /* Ngăn scroll body, chỉ scroll main */
+}
+
+/* Sidebar left */
+.sidebar-left {
+  width: 200px;
+  background-color: var(--bg-sidebar);
+  padding: 20px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.app-logo {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  color: var(--text-primary);
+}
+
+.nav-tabs {
+  list-style: none;
+}
+
+.nav-tabs li {
+  margin-bottom: 10px;
+}
+
+.nav-tabs a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  display: block;
+}
+
+.nav-tabs a:hover, .nav-tabs a.active {
+  color: var(--text-primary);
+}
+
+.sidebar-bottom {
+  position: absolute;
+  bottom: 20px;
+  width: calc(100% - 40px);  /* Adjust padding */
+}
+
+.sidebar-bottom a {
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.sidebar-bottom a:hover {
+  color: var(--text-primary);
+}
+
+/* Header top-right profile */
+.main-header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: calc(100% - 200px);  /* Trừ sidebar width */
+  height: 60px;
+  background-color: var(--bg-main);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 20px;
+  z-index: 5;
+}
+
+.profile-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.dropdown {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background-color: var(--bg-player);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  display: none;
+  z-index: 10;
+}
+
+.dropdown form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dropdown input {
+  padding: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-main);
+  color: var(--text-primary);
+  border-radius: 4px;
+}
+
+.dropdown button {
+  background-color: var(--accent);
+  color: var(--text-primary);
+  border: none;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.dropdown button:hover {
+  opacity: 0.9;
+}
+
+/* Main content (scrollable list) */
+.main-content {
+  margin-left: 200px;  /* Trừ sidebar */
+  margin-top: 60px;  /* Trừ header */
+  margin-bottom: 80px;  /* Trừ player-bar */
+  padding: 20px;
+  overflow-y: auto;
+  height: calc(100vh - 140px);  /* Full height minus header + player */
+}
+
+.main-section {
+  display: none;  /* Hidden default, show by JS */
+}
+
+.main-section.active {
+  display: block;
+}
+
+.main-section h2 {
+  margin-bottom: 10px;
+}
+
+.main-section ul {
+  list-style: none;
+}
+
+.main-section li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+}
+
+.main-section li:hover {
+  background-color: var(--bg-player);
+}
+
+.main-section li img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.main-section li div {
+  flex: 1;
+}
+
+.main-section li button {
+  background-color: var(--accent);
+  color: var(--text-primary);
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Upload form in main (for "Tải nhạc lên" tab) */
+.upload-section input, .upload-section button {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg-main);
+  color: var(--text-primary);
+  border-radius: 4px;
+}
+
+.upload-section button {
+  background-color: var(--accent);
+  border: none;
+  cursor: pointer;
+}
+
+/* Player-bar bottom */
+.player-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background-color: var(--bg-player);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 10;
+  justify-content: space-between;
+}
+
+.track-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.track-cover {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.track-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.progress-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 300px;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  appearance: none;
+}
+
+.progress-bar::-webkit-slider-thumb {
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+.volume-control {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.volume-control input {
+  width: 100px;
+}
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+  .sidebar-left {
+    width: 100%;
+    height: auto;
+    position: relative;
+    display: none;  /* Hide default, show with menu icon */
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+
+  .main-header {
+    width: 100%;
+  }
+
+  /* Add menu icon to header for sidebar toggle */
+  .main-header::before {
+    content: '☰';
+    position: absolute;
+    left: 20px;
+    font-size: 1.5em;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  ENV_VAR: "value"  # Từ application.properties, ví dụ DB_HOST=mysql.app-ns.svc.cluster.local
+  MYSQL_HOST: "mysql"  # Service name của MySQL

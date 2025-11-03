@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>ChatMusic - Đăng Ký</title>
+  <link rel="stylesheet" href="/styles/signup.css" />
+  <link rel="stylesheet" href="/styles/theme.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script type="module" src="/scripts/auth.js"></script>
+</head>
+<body class="dark-theme">
+  <div class="login-container">  <!-- Reuse class for center -->
+    <h2>🆕 Tạo tài khoản</h2>
+    <input type="text" id="signupUsername" placeholder="Tên người dùng" />
+    <input type="email" id="signupEmail" placeholder="Email" />
+    <input type="password" id="signupPassword" placeholder="Mật khẩu" />
+    <input type="password" id="signupConfirm" placeholder="Nhập lại mật khẩu" />
+    <input type="date" id="signupBirthday" />
+    <button onclick="authFunctions.signup()">Tạo tài khoản</button>
+    
+    <div class="social-buttons">
+      <button class="social-btn google" onclick="authFunctions.loginWithGoogle()">
+        Đăng ký với Google
+      </button>
+    </div>
+    
+    <p>Đã có tài khoản? <a href="index.html">Đăng nhập</a></p>
+  </div>
+</body>
+</html>
